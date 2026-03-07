@@ -487,8 +487,8 @@
     }
 
     .contrib-cell {
-      width: 14px;
-      height: 14px;
+      width: 18px;
+      height: 18px;
       border-radius: 3px;
       background: var(--border);
       transition: outline 0.15s;
@@ -1149,8 +1149,8 @@
           const startDow = week[0].getDay();
           for (let i = 0; i < startDow; i++) {
             const empty = document.createElement('div');
-            empty.style.width = '14px';
-            empty.style.height = '14px';
+            empty.style.width = '18px';
+            empty.style.height = '18px';
             grid.appendChild(empty);
           }
 
@@ -1175,8 +1175,8 @@
           const endDow = week[week.length - 1].getDay();
           for (let i = endDow + 1; i < 7; i++) {
             const empty = document.createElement('div');
-            empty.style.width = '14px';
-            empty.style.height = '14px';
+            empty.style.width = '18px';
+            empty.style.height = '18px';
             grid.appendChild(empty);
           }
         });
