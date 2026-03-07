@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Niroop Belgaumkar | AI Product Manager</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===========================
+       CSS VARIABLES
+       =========================== */
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #111827;
+      --bg-card: #1a1a2e;
+      --bg-card-hover: #1f2937;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.3);
+      --accent-secondary: #2dd4bf;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --border: #1e293b;
+      --font-body: 'Inter', sans-serif;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --nav-height: 64px;
+    }
+
+    /* ===========================
+       RESET & BASE
+       =========================== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: var(--accent-secondary);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+    }
+
+    /* ===========================
+       SCROLL ANIMATIONS
+       =========================== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===========================
+       NAVIGATION
+       =========================== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 15, 0.95);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        gap: 1.5rem;
+        border-bottom: 1px solid var(--border);
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.3s, opacity 0.3s;
+      }
+
+      .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+
+    /* ===========================
+       HERO SECTION
+       =========================== */
+    #hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 0 1.5rem;
+    }
+
+    /* Animated gradient background */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 600px at 20% 50%, rgba(56, 189, 248, 0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 500px at 80% 30%, rgba(45, 212, 191, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 400px at 50% 80%, rgba(56, 189, 248, 0.05) 0%, transparent 70%);
+      animation: heroShift 8s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+
+    @keyframes heroShift {
+      0% { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.1) translate(20px, -15px); }
+    }
+
+    /* Floating particles */
+    .particles {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0;
+      animation: float linear infinite;
+    }
+
+    @keyframes float {
+      0% { opacity: 0; transform: translateY(100vh) scale(0); }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-content p {
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-indicator svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--text-muted);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+
+    /* ===========================
+       SECTION SHARED
+       =========================== */
+    section {
+      padding: 6rem 1.5rem;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 3.5rem;
+      color: var(--text-primary);
+    }
+
+    .section-title span {
+      color: var(--accent);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ===========================
+       EXPERIENCE / TIMELINE
+       =========================== */
+    #experience {
+      background: var(--bg-secondary);
+    }
+
+    .timeline {
+      position: relative;
+      padding: 1rem 0;
+    }
+
+    /* Vertical line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      position: relative;
+      width: 50%;
+      padding: 0 2.5rem 3rem;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+      text-align: left;
+    }
+
+    /* Dot on the timeline */
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      top: 0.5rem;
+      width: 14px;
+      height: 14px;
+      background: var(--accent);
+      border: 3px solid var(--bg-secondary);
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    .timeline-item:nth-child(odd)::before {
+      right: -7px;
+    }
+
+    .timeline-item:nth-child(even)::before {
+      left: -7px;
+    }
+
+    .timeline-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .timeline-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .timeline-card h3 {
+      color: var(--accent);
+      font-size: 1.15rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-card h4 {
+      color: var(--text-primary);
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .timeline-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .timeline-card ul li {
+      position: relative;
+      padding-left: 1rem;
+      margin-bottom: 0.35rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .timeline-card ul li::before {
+      content: '\25B8';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .timeline::before {
+        left: 1rem;
+      }
+
+      .timeline-item {
+        width: 100%;
+        left: 0 !important;
+        text-align: left !important;
+        padding-left: 2.5rem;
+        padding-right: 0;
+      }
+
+      .timeline-item::before {
+        left: 4px !important;
+        right: auto !important;
+      }
+    }
+
+    /* ===========================
+       PROJECTS
+       =========================== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.75rem;
+    }
+
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* GitHub Contribution Grid */
+    .github-chart {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 1.5rem 1.5rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow-x: auto;
+    }
+
+    .chart-label {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 0.75rem;
+    }
+
+    .contrib-grid {
+      display: inline-grid;
+      grid-template-rows: auto repeat(7, 1fr);
+      grid-auto-flow: column;
+      gap: 3px;
+      justify-content: center;
+    }
+
+    .contrib-grid .month-label {
+      grid-row: 1;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding-bottom: 4px;
+    }
+
+    .contrib-grid .day-label {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 4px;
+    }
+
+    .contrib-cell {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      background: var(--border);
+      transition: outline 0.15s;
+      position: relative;
+    }
+
+    .contrib-cell:hover {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+    }
+
+    .contrib-cell[data-level="1"] { background: rgba(56, 189, 248, 0.25); }
+    .contrib-cell[data-level="2"] { background: rgba(56, 189, 248, 0.5); }
+    .contrib-cell[data-level="3"] { background: rgba(56, 189, 248, 0.75); }
+    .contrib-cell[data-level="4"] { background: rgba(56, 189, 248, 1); }
+
+    .contrib-cell .tooltip {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      white-space: nowrap;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .contrib-cell:hover .tooltip {
+      display: block;
+    }
+
+    .contrib-legend {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin-top: 0.75rem;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .contrib-legend .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .contrib-cell {
+        width: 11px;
+        height: 11px;
+      }
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 30px var(--accent-glow);
+    }
+
+    .project-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .project-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-tags span {
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+
+    .project-links a:hover {
+      color: var(--accent);
+    }
+
+    .project-links svg {
+      width: 18px;
+      height: 18px;
+    }
+
+
+    /* ===========================
+       CONTACT
+       =========================== */
+    .contact-wrapper {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .contact-form textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: var(--bg-primary);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px var(--accent-glow);
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      background: rgba(45, 212, 191, 0.1);
+      border: 1px solid var(--accent-secondary);
+      border-radius: 8px;
+      color: var(--accent-secondary);
+      font-weight: 500;
+    }
+
+    .form-success.show {
+      display: block;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--text-muted);
+      transition: color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .social-links a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    .social-links svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* ===========================
+       FOOTER
+       =========================== */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===========================
+       NAVIGATION
+       =========================== -->
+  <nav>
+    <a href="#hero" class="nav-logo">NB</a>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="./assets/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===========================
+       HERO SECTION
+       =========================== -->
+  <section id="hero">
+    <div class="particles" id="particles"></div>
+    <div class="hero-content">
+      <h1>Niroop Belgaumkar</h1>
+      <p>AI Product Manager — building intelligent products at the intersection of AI, data, and user experience.</p>
+    </div>
+    <div class="scroll-indicator">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- ===========================
+       EXPERIENCE SECTION
+       =========================== -->
+  <section id="experience">
+    <div class="container">
+      <h2 class="section-title fade-in"><span>//</span> Experience</h2>
+      <div class="timeline">
+
+        <!-- Job 1 — oldest PM role -->
+        <div class="timeline-item fade-in">
+          <div class="timeline-card">
+            <h3>Needl.ai</h3>
+            <h4>Associate Product Manager</h4>
+            <div class="timeline-meta">Aug 2022 &ndash; Mar 2023 &middot; Pune, India</div>
+            <ul>
+              <!-- REPLACE: responsibilities / achievements -->
+              <li>Managed product for an information platform unifying content from news, apps, and messaging services</li>
+              <li>Defined requirements and prioritized features for AI-powered knowledge management tools</li>
+              <li>Collaborated with engineering to deliver enterprise search and content aggregation features</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Job 2 -->
+        <div class="timeline-item fade-in">
+          <div class="timeline-card">
+            <h3>Prodigal</h3>
+            <h4>Product Manager</h4>
+            <div class="timeline-meta">Mar 2023 &ndash; Aug 2024 &middot; Mumbai, India</div>
+            <ul>
+              <!-- REPLACE: responsibilities / achievements -->
+              <li>Owned the Platform product — collecting, processing, and delivering customer data at scale</li>
+              <li>Drove product strategy for AI-based compliance and omnichannel engagement features</li>
+              <li>Wrote PRDs and led cross-functional squads across engineering, design, and data science</li>
+              <li>Championed data-driven decision-making and radical candor across the product org</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Job 3 — current -->
+        <div class="timeline-item fade-in">
+          <div class="timeline-card">
+            <h3>Wati</h3>
+            <h4>Product Manager</h4>
+            <div class="timeline-meta">Aug 2024 &ndash; Present &middot; Hong Kong (Remote)</div>
+            <ul>
+              <!-- REPLACE: responsibilities / achievements -->
+              <li>Leading product for a conversational platform built on WhatsApp's Business API, serving 8,000+ businesses across 100+ countries</li>
+              <li>Defining roadmap and shipping features for AI-powered customer engagement workflows</li>
+              <li>Driving product-led growth initiatives and cross-functional alignment across global teams</li>
+              <li>Building AI-native tools to enhance business communication at scale</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================
+       PROJECTS SECTION
+       =========================== -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title fade-in"><span>//</span> Projects</h2>
+
+      <!-- Dynamic GitHub Contribution Grid (last 3 months) -->
+      <div class="github-chart fade-in">
+        <div class="contrib-grid" id="contribGrid"></div>
+        <p class="chart-label">GitHub Contributions — Last 3 Months</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1: AI-PM-OS -->
+        <div class="project-card fade-in">
+          <h3>AI-PM-OS</h3>
+          <p>AI-powered PM toolkit built on Claude Code — generates metric sheets and synthesizes user feedback. Fork it, add your company context, and go.</p>
+          <div class="project-tags">
+            <span>Python</span>
+            <span>Claude Code</span>
+            <span>AI</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/101WaysToBug/AI-PM-OS" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 2: communicate -->
+        <div class="project-card fade-in">
+          <h3>Communicate</h3>
+          <p>A Claude Code skill that transforms any content into polished communication formats — executive emails, Slack updates, Notion docs, and release notes.</p>
+          <div class="project-tags">
+            <span>Claude Code</span>
+            <span>Skill</span>
+            <span>Productivity</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/101WaysToBug/communicate" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 3: generate-ticket -->
+        <div class="project-card fade-in">
+          <h3>Generate Ticket</h3>
+          <p>A Claude Code skill that generates structured project tickets (YouTrack/JIRA) from user stories, metric sheets, PRDs, or feature descriptions.</p>
+          <div class="project-tags">
+            <span>Claude Code</span>
+            <span>Skill</span>
+            <span>YouTrack</span>
+            <span>JIRA</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/101WaysToBug/generate-ticket" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 4: one-pager-PRD -->
+        <div class="project-card fade-in">
+          <h3>One-Pager PRD</h3>
+          <p>Claude Code skill that generates one-pager Product Requirements Documents following Lenny Rachitsky's framework. Streamlines product planning.</p>
+          <div class="project-tags">
+            <span>Claude Code</span>
+            <span>Skill</span>
+            <span>Product</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/101WaysToBug/one-pager-PRD" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===========================
+       CONTACT SECTION
+       =========================== -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title fade-in"><span>//</span> Contact</h2>
+      <div class="contact-wrapper fade-in">
+        <form class="contact-form" id="contactForm" action="https://formsubmit.co/ajax/niroopbelgaumkar1@gmail.com" method="POST">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="message" placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn-submit">
+            Send Message
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.27 3.13a.75.75 0 01.96-.96L21 12l-16.77 9.83a.75.75 0 01-.96-.96L6 12zm0 0h7.5"/></svg>
+          </button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          Thank you! Your message has been sent successfully.
+        </div>
+
+        <!-- Social Links -->
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/nbelgaum/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://github.com/101WaysToBug" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="mailto:niroopbelgaumkar1@gmail.com" aria-label="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ===========================
+       FOOTER
+       =========================== -->
+  <footer>
+    <p>&copy; 2026 Niroop Belgaumkar. All rights reserved.</p>
+  </footer>
+
+  <!-- ===========================
+       JAVASCRIPT
+       =========================== -->
+  <script>
+    /* ----------------------------
+       Mobile Navigation Toggle
+       ---------------------------- */
+    function initMobileNav() {
+      const toggle = document.querySelector('.nav-toggle');
+      const links = document.querySelector('.nav-links');
+
+      toggle.addEventListener('click', () => {
+        links.classList.toggle('open');
+      });
+
+      // Close menu when a link is clicked
+      links.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          links.classList.remove('open');
+        });
+      });
+    }
+
+    /* ----------------------------
+       Scroll-triggered Animations
+       (IntersectionObserver)
+       ---------------------------- */
+    function initScrollAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    }
+
+    /* ----------------------------
+       Particle Background
+       ---------------------------- */
+    function initParticles() {
+      const container = document.getElementById('particles');
+      const count = 30;
+
+      for (let i = 0; i < count; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.width = particle.style.height = (Math.random() * 3 + 1) + 'px';
+        particle.style.animationDuration = (Math.random() * 8 + 6) + 's';
+        particle.style.animationDelay = (Math.random() * 10) + 's';
+        container.appendChild(particle);
+      }
+    }
+
+    /* ----------------------------
+       Contact Form Handling
+       ---------------------------- */
+    function initContactForm() {
+      const form = document.getElementById('contactForm');
+      const success = document.getElementById('formSuccess');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        const json = Object.fromEntries(data.entries());
+
+        fetch(form.action, {
+          method: 'POST',
+          body: JSON.stringify(json),
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        }).then((response) => {
+          if (response.ok) {
+            form.reset();
+            success.textContent = 'Thank you! Your message has been sent successfully.';
+            success.classList.add('show');
+          } else {
+            success.textContent = 'Oops — something went wrong. Please try again.';
+            success.style.borderColor = '#f87171';
+            success.style.color = '#f87171';
+            success.classList.add('show');
+          }
+          setTimeout(() => {
+            success.classList.remove('show');
+            success.style.borderColor = '';
+            success.style.color = '';
+          }, 4000);
+        }).catch(() => {
+          success.textContent = 'Network error. Please try again later.';
+          success.style.borderColor = '#f87171';
+          success.style.color = '#f87171';
+          success.classList.add('show');
+          setTimeout(() => {
+            success.classList.remove('show');
+            success.style.borderColor = '';
+            success.style.color = '';
+          }, 4000);
+        });
+      });
+    }
+
+/* ----------------------------
+       GitHub Contribution Grid
+       (Last 3 months, live data)
+       ---------------------------- */
+    function initContribGrid() {
+      const username = '101WaysToBug';
+      const grid = document.getElementById('contribGrid');
+      const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const dayLabels = ['','Mon','','Wed','','Fri',''];
+
+      // Fetch all pages of public events (up to 10 pages x 100 = 1000 events)
+      const pages = [1, 2, 3];
+      Promise.all(
+        pages.map(p =>
+          fetch('https://api.github.com/users/' + username + '/events/public?per_page=100&page=' + p)
+            .then(r => r.json())
+            .catch(() => [])
+        )
+      ).then(results => {
+        const allEvents = results.flat();
+
+        // Count events per day
+        const dateMap = {};
+        allEvents.forEach(event => {
+          const date = event.created_at.split('T')[0];
+          dateMap[date] = (dateMap[date] || 0) + 1;
+        });
+
+        // Build last 3 months of dates
+        const today = new Date();
+        const start = new Date(today);
+        start.setMonth(start.getMonth() - 3);
+        start.setDate(start.getDate() - start.getDay()); // align to Sunday
+
+        const days = [];
+        const d = new Date(start);
+        while (d <= today) {
+          days.push(new Date(d));
+          d.setDate(d.getDate() + 1);
+        }
+
+        // Find max for level scaling
+        const counts = days.map(day => {
+          const key = day.toISOString().split('T')[0];
+          return dateMap[key] || 0;
+        });
+        const maxCount = Math.max(...counts, 1);
+
+        // Group into weeks
+        const weeks = [];
+        let currentWeek = [];
+        days.forEach(day => {
+          if (day.getDay() === 0 && currentWeek.length > 0) {
+            weeks.push(currentWeek);
+            currentWeek = [];
+          }
+          currentWeek.push(day);
+        });
+        if (currentWeek.length > 0) weeks.push(currentWeek);
+
+        let lastMonth = -1;
+
+        // Day labels column
+        const emptyLabel = document.createElement('div');
+        emptyLabel.className = 'month-label';
+        grid.appendChild(emptyLabel);
+        dayLabels.forEach(label => {
+          const el = document.createElement('div');
+          el.className = 'day-label';
+          el.textContent = label;
+          grid.appendChild(el);
+        });
+
+        // Render each week
+        weeks.forEach(week => {
+          const firstDay = week[0];
+          const monthLabel = document.createElement('div');
+          monthLabel.className = 'month-label';
+          if (firstDay.getMonth() !== lastMonth && firstDay.getDate() <= 7) {
+            monthLabel.textContent = monthNames[firstDay.getMonth()];
+            lastMonth = firstDay.getMonth();
+          }
+          grid.appendChild(monthLabel);
+
+          // Pad start
+          const startDow = week[0].getDay();
+          for (let i = 0; i < startDow; i++) {
+            const empty = document.createElement('div');
+            empty.style.width = '14px';
+            empty.style.height = '14px';
+            grid.appendChild(empty);
+          }
+
+          week.forEach(day => {
+            const key = day.toISOString().split('T')[0];
+            const count = dateMap[key] || 0;
+            let level = 0;
+            if (count > 0) level = Math.min(4, Math.ceil((count / maxCount) * 4));
+
+            const cell = document.createElement('div');
+            cell.className = 'contrib-cell';
+            cell.setAttribute('data-level', level);
+
+            const tooltip = document.createElement('span');
+            tooltip.className = 'tooltip';
+            tooltip.textContent = count + ' contribution' + (count !== 1 ? 's' : '') + ' on ' + key;
+            cell.appendChild(tooltip);
+            grid.appendChild(cell);
+          });
+
+          // Pad end
+          const endDow = week[week.length - 1].getDay();
+          for (let i = endDow + 1; i < 7; i++) {
+            const empty = document.createElement('div');
+            empty.style.width = '14px';
+            empty.style.height = '14px';
+            grid.appendChild(empty);
+          }
+        });
+
+        // Legend
+        const chart = grid.parentElement;
+        const legendEl = document.createElement('div');
+        legendEl.className = 'contrib-legend';
+        const lessSpan = document.createElement('span');
+        lessSpan.textContent = 'Less ';
+        legendEl.appendChild(lessSpan);
+        [0,1,2,3,4].forEach(level => {
+          const swatch = document.createElement('div');
+          swatch.className = 'swatch';
+          swatch.style.background = level === 0 ? 'var(--border)' :
+            'rgba(56, 189, 248, ' + (level * 0.25) + ')';
+          legendEl.appendChild(swatch);
+        });
+        const moreSpan = document.createElement('span');
+        moreSpan.textContent = ' More';
+        legendEl.appendChild(moreSpan);
+        chart.appendChild(legendEl);
+      }).catch(() => {
+        grid.innerHTML = '<p style="color:var(--text-muted);">Could not load contribution data.</p>';
+      });
+    }
+
+    /* ----------------------------
+       Initialize Everything
+       ---------------------------- */
+    document.addEventListener('DOMContentLoaded', () => {
+      initMobileNav();
+      initScrollAnimations();
+      initParticles();
+      initContactForm();
+      initContribGrid();
+    });
+  </script>
+
+</body>
+</html>
