@@ -248,7 +248,7 @@ img {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
   align-items: center;
-  justify-content: space-between;
+  gap: 0;
   padding: 0 1.25rem;
   z-index: 200;
 }
@@ -262,7 +262,7 @@ img {
 
 .mobile-theme-toggle {
   color: var(--text);
-  margin-left: 0.5rem;
+  margin-left: 0.25rem;
 }
 
 .mobile-nav-toggle {
@@ -273,6 +273,7 @@ img {
   flex-direction: column;
   gap: 5px;
   padding: 4px;
+  margin-left: auto;
 }
 
 .mobile-nav-toggle span {
