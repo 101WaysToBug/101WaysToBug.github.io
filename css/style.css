@@ -260,6 +260,16 @@ img {
   color: var(--text);
 }
 
+.mobile-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mobile-theme-toggle {
+  color: var(--text);
+}
+
 .mobile-nav-toggle {
   background: none;
   border: none;

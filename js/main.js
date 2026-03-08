@@ -15,10 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Theme toggle button
-  const themeBtn = document.querySelector('.theme-toggle');
-  if (themeBtn) {
-    themeBtn.addEventListener('click', () => {
+  // Theme toggle buttons (sidebar + mobile nav)
+  document.querySelectorAll('.theme-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
       const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
       if (isDark) {
         document.documentElement.removeAttribute('data-theme');
@@ -28,5 +27,5 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', 'dark');
       }
     });
-  }
+  });
 });
