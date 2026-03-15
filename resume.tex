@@ -1,0 +1,138 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, urlcolor=blue, linkcolor=blue]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{geometry}
+
+\geometry{top=0.5in, bottom=0.5in, left=0.6in, right=0.6in}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[1]{\item\small{#1 \vspace{-2pt}}}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item[]
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+  \vspace{-2pt}\item[]
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in, label=\textbullet]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge \scshape Niroop Belgaumkar} \\ \vspace{4pt}
+    \small
+    +91 8668493601 $|$
+    \href{mailto:niroopbelgaumkar1@gmail.com}{niroopbelgaumkar1@gmail.com} $|$
+    \href{https://www.linkedin.com/in/nbelgaum}{linkedin.com/in/nbelgaum} $|$
+    \href{https://github.com/101WaysToBug}{github.com/101WaysToBug}
+\end{center}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Senior Product Manager}{Aug 2024 -- Present}
+    {Wati (backed by Tiger Global \& Sequoia)}{Hong Kong (Remote)}
+  \resumeItemListStart
+    \resumeItem{Wati is a leading WhatsApp Business API platform serving 15,000+ businesses across 100+ countries, enabling customer engagement at scale through messaging, automation, and AI-powered communication tools}
+    \resumeItem{Made the early strategic bet to prioritize WhatsApp Business Calling, aligned cross-functional buy-in across engineering and GTM, and scaled 0 $\rightarrow$ 20K+ call minutes in 90 days; Wati now leads the Indian subcontinent in call volume, independently confirmed by Meta}
+    \resumeItem{Drove a full overhaul of the HubSpot integration --- real-time bidirectional sync plus GenAI capabilities (automated tasks, conversation summaries) --- growing adopters 200 $\rightarrow$ 900 in 90 days, driving \$1M+ revenue attach, and directly displacing competitors in enterprise evaluations}
+    \resumeItem{Shipped call intelligence pipeline (recording, transcription, AI summarization) with automated CRM push; gated recording to higher-tier plans to create a natural upgrade path, generating \$50K in month-one revenue through plan upgrades and AI credit consumption}
+    \resumeItem{Designed a PLG motion for Voice AI using behavioral triggers (missed calls, after-hours gaps) to drive self-serve trial, generating 20\% TOFU growth with 20\% higher conversion than SLG or website-sourced leads --- validating a scalable, low-CAC acquisition channel}
+    \resumeItem{Led discovery and pilot design for Wati's Voice AI, locking 5 enterprise pilots across CX, sales enquiry, and appointment workflows; drove the build-vs-partner decision to develop proprietary voice agents on Deepgram STT/TTS, preserving long-term margin and differentiation}
+  \resumeItemListEnd
+
+  \resumeSubheading
+    {Product Manager, Platform}{Mar 2023 -- Aug 2024}
+    {Prodigal Tech (YC S18)}{Mumbai, MH}
+  \resumeItemListStart
+    \resumeItem{Prodigal Tech is a YC-backed B2B SaaS company providing AI-driven compliance, agent productivity, and digital collections solutions to 150+ financial services clients across the US}
+    \resumeItem{Launched a freemium tier with one-click access via the dialer marketplace, capturing the long tail of SMB accounts and driving a 10\% lift in top-of-funnel inbound volume within the first quarter}
+    \resumeItem{Owned the integrations roadmap end-to-end --- scored 20+ CRM and dialer opportunities by API feasibility, contract size, and prospect frequency, prioritizing 6 integrations that collectively covered 70\% of the active pipeline}
+    \resumeItem{Designed a configuration-driven abstraction layer that standardized data pipeline creation across dialers, cutting new integration build time by 80\% and reducing customer onboarding time from one week to one day}
+  \resumeItemListEnd
+
+  \resumeSubheading
+    {Associate Product Manager}{Aug 2022 -- Feb 2023}
+    {Needl.ai}{Bangalore, KA}
+  \resumeItemListStart
+    \resumeItem{Needl.ai's product delivers an organized view of user data from diverse apps, enabling seamless updates and unified search capabilities across all data sources}
+    \resumeItem{Initiated and led the development of a note-taking feature within the paid tier in response to user feedback, culminating in a 12\% increase in conversion to paid}
+    \resumeItem{Analyzed user journeys to uncover key engagement points and designed onboarding nudges to accelerate users' attainment of the `aha' moment, leading to a 2x increase in retention}
+    \resumeItem{Built and shipped a metrics dashboard tracking retention and WAU, adopted as the daily operating reference for executives and product leads}
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {\href{https://github.com/101WaysToBug}{Personal Portfolio \& Projects --- github.com/101WaysToBug}}{}
+  \resumeItemListStart
+    \resumeItem{Built and iterated on a personal portfolio site end-to-end using Claude Code --- from design and layout to dark mode, responsive navigation, and content updates --- demonstrating fluency with AI-native development workflows}
+    \resumeItem{Leveraged Claude Code's agentic capabilities to ship multi-file changes, manage git workflows, and automate repetitive engineering tasks, reducing execution time on front-end work by an order of magnitude}
+    \resumeItem{Used Claude Code to draft and refine structured product artifacts (PRDs, experience bullets, project writeups) directly within the development environment, integrating PM and engineering workflows into a single loop}
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {University of Waterloo}{Waterloo, ON, Canada}
+    {Bachelor of Mathematics in Computer Science and Pure Mathematics, Minor in Economics}{Sep. 2016 -- Aug 2021}
+\resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Product}: Product Strategy, Roadmap Planning, Go-to-Market, PLG, Cross-functional Leadership, User Research, Problem Discovery \\
+    \textbf{AI \& Technical Skills}: Claude Code, Figma, SQL, Python, Mixpanel, Tableau, Data Analytics, Agile Methodologies
+  }}
+\end{itemize}
+
+\end{document}
